@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Desktop</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span id="datetime"></span>
+        </div>
+        <div class="top-bar-right">
+            <div class="status-icon" title="Bluetooth">
+                <i class="fa-brands fa-bluetooth-b"></i>
+            </div>
+            <div class="status-icon" title="WiFi">
+                <i class="fa-solid fa-wifi"></i>
+            </div>
+            <div class="status-icon" title="Volume">
+                <i class="fa-solid fa-volume-high"></i>
+            </div>
+            <div class="status-icon" title="Battery">
+                <i class="fa-solid fa-battery-three-quarters"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Area -->
+    <div class="desktop" id="desktop"></div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search the web..." autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-header">
+            <span>Settings</span>
+            <div class="modal-controls">
+                <button class="modal-btn minimize" id="settingsMinimize" title="Minimize">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <button class="modal-btn maximize" id="settingsMaximize" title="Maximize">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </button>
+                <button class="modal-btn close" id="settingsClose" title="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="settings-section">
+                <h3>Background Color</h3>
+                <div class="color-options">
+                    <button class="color-swatch" data-type="background" data-value="#1a1a2e" style="background: #1a1a2e;" title="Charcoal"></button>
+                    <button class="color-swatch" data-type="background" data-value="#689b6a" style="background: #689b6a;" title="Pastel Green"></button>
+                    <button class="color-swatch" data-type="background" data-value="#d49a6a" style="background: #d49a6a;" title="Pastel Orange"></button>
+                    <button class="color-swatch" data-type="background" data-value="#7ec8d8" style="background: #7ec8d8;" title="Pastel Sky-Blue"></button>
+                    <button class="color-swatch" data-type="background" data-value="#b08cd4" style="background: #b08cd4;" title="Pastel Purple"></button>
+                    <input type="color" class="color-picker" data-type="background" value="#1a1a2e">
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>Accent Color</h3>
+                <div class="color-options">
+                    <button class="color-swatch" data-type="accent" data-value="#89b4fa" style="background: #89b4fa;"></button>
+                    <button class="color-swatch" data-type="accent" data-value="#a6e3a1" style="background: #a6e3a1;"></button>
+                    <button class="color-swatch" data-type="accent" data-value="#fab387" style="background: #fab387;"></button>
+                    <button class="color-swatch" data-type="accent" data-value="#cba6f7" style="background: #cba6f7;"></button>
+                    <button class="color-swatch" data-type="accent" data-value="#f38ba8" style="background: #f38ba8;"></button>
+                    <button class="color-swatch" data-type="accent" data-value="#74c7ec" style="background: #74c7ec;"></button>
+                    <input type="color" class="color-picker" data-type="accent" value="#89b4fa">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div class="modal" id="galleryModal">
+        <div class="modal-header">
+            <span>Gallery</span>
+            <div class="modal-controls">
+                <button class="modal-btn minimize" id="galleryMinimize" title="Minimize">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <button class="modal-btn maximize" id="galleryMaximize" title="Maximize">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </button>
+                <button class="modal-btn close" id="galleryClose" title="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body gallery-body">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Placeholder images generated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Text Editor Modal -->
+    <div class="modal" id="textEditorModal">
+        <div class="modal-header">
+            <span>Text Editor</span>
+            <div class="modal-controls">
+                <button class="modal-btn minimize" id="textEditorMinimize" title="Minimize">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <button class="modal-btn maximize" id="textEditorMaximize" title="Maximize">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </button>
+                <button class="modal-btn close" id="textEditorClose" title="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <textarea class="text-editor-area" placeholder="Start typing here..."></textarea>
+        </div>
+    </div>
+
+    <!-- Terminal Modal -->
+    <div class="modal" id="terminalModal">
+        <div class="modal-header">
+            <span>Terminal</span>
+            <div class="modal-controls">
+                <button class="modal-btn minimize" id="terminalMinimize" title="Minimize">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <button class="modal-btn maximize" id="terminalMaximize" title="Maximize">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </button>
+                <button class="modal-btn close" id="terminalClose" title="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body terminal-body">
+            <div class="terminal-output" id="terminalOutput">
+                <div class="terminal-line">Welcome to OS Terminal v1.0</div>
+                <div class="terminal-line">Type 'help' for available commands.</div>
+                <div class="terminal-line">&nbsp;</div>
+            </div>
+            <div class="terminal-input-line">
+                <span class="terminal-prompt">user@os:~$</span>
+                <input type="text" id="terminalInput" autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+    </div>
+
+    <!-- Browser Modal -->
+    <div class="modal" id="browserModal">
+        <div class="modal-header">
+            <span>Web Browser</span>
+            <div class="modal-controls">
+                <button class="modal-btn minimize" id="browserMinimize" title="Minimize">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <button class="modal-btn maximize" id="browserMaximize" title="Maximize">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </button>
+                <button class="modal-btn close" id="browserClose" title="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body browser-body">
+            <div class="browser-toolbar">
+                <button class="browser-btn" title="Back"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="browser-btn" title="Forward"><i class="fa-solid fa-arrow-right"></i></button>
+                <button class="browser-btn" title="Refresh"><i class="fa-solid fa-rotate"></i></button>
+                <input type="text" class="browser-url" placeholder="Enter URL..." value="https://www.example.com">
+                <button class="browser-btn" title="Go"><i class="fa-solid fa-arrow-right-to-arc"></i></button>
+            </div>
+            <div class="browser-content">
+                <iframe id="browserFrame" src="about:blank" title="Browser Content" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+                <div class="browser-error" id="browserError">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <p>This site blocks embedding in iframes.</p>
+                    <a id="browserExternalLink" href="#" target="_blank" class="browser-external-btn">Open in new tab →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Manager Modal -->
+    <div class="modal" id="fileManagerModal">
+        <div class="modal-header">
+            <span>File Manager</span>
+            <div class="modal-controls">
+                <button class="modal-btn minimize" id="fileManagerMinimize" title="Minimize">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <button class="modal-btn maximize" id="fileManagerMaximize" title="Maximize">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </button>
+                <button class="modal-btn close" id="fileManagerClose" title="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body file-manager-body">
+            <div class="file-manager-sidebar">
+                <div class="fm-item active"><i class="fa-solid fa-house"></i> Home</div>
+                <div class="fm-item"><i class="fa-solid fa-desktop"></i> Desktop</div>
+                <div class="fm-item"><i class="fa-solid fa-download"></i> Downloads</div>
+                <div class="fm-item"><i class="fa-solid fa-image"></i> Pictures</div>
+                <div class="fm-item"><i class="fa-solid fa-music"></i> Music</div>
+                <div class="fm-item"><i class="fa-solid fa-video"></i> Videos</div>
+            </div>
+            <div class="file-manager-content">
+                <div class="file-grid">
+                    <div class="file-item">
+                        <i class="fa-solid fa-folder"></i>
+                        <span>Documents</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fa-solid fa-folder"></i>
+                        <span>Projects</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fa-solid fa-folder"></i>
+                        <span>Backups</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>readme.md</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fa-solid fa-file-code"></i>
+                        <span>config.json</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fa-solid fa-image"></i>
+                        <span>wallpaper.png</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar" id="taskbar">
+        <div class="taskbar-icons">
+            <div class="taskbar-icon" id="openSearch" title="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="taskbar-icon" id="openSettings" title="Settings">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <div class="taskbar-icon" id="openGallery" title="Gallery">
+                <i class="fa-solid fa-images"></i>
+            </div>
+            <div class="taskbar-icon" id="openTextEditor" title="Text Editor">
+                <i class="fa-solid fa-file-pen"></i>
+            </div>
+            <div class="taskbar-icon" id="openTerminal" title="Terminal">
+                <i class="fa-solid fa-terminal"></i>
+            </div>
+            <div class="taskbar-icon" id="openBrowser" title="Browser">
+                <i class="fa-solid fa-globe"></i>
+            </div>
+            <div class="taskbar-icon" id="openFileManager" title="File Manager">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
