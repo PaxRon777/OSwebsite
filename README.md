@@ -32,6 +32,10 @@ Customization
 Browser Notes
 The built-in browser uses an iframe. Some websites block iframe embedding via X-Frame-Options or CSP headers and will show an error with a link to open in a new tab. Sites that allow embedding (Wikipedia, documentation sites, etc.) will work normally.
 
+## 🛠️ Installation & Setup
+1. Clone this repository or download the files.
+2. Open `os.html` in any modern web browser.
+
 ## 🧠 Development Note
 
 This project was developed using **vibe coding**—an iterative, high-level conceptual development approach where the developer guides the "vibe" and intent while the AI handles the heavy lifting of implementation.
