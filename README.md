@@ -1,5 +1,5 @@
 OS Desktop Website
-A web-based operating system simulation website featuring a desktop environment with draggable windows, a taskbar, and multiple built-in applications.
+- A web-based operating system simulation website featuring a desktop environment with draggable windows, a taskbar, and multiple built-in applications.
 
 ![alt text](screenshot.jpg)
 
